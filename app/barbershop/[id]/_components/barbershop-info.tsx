@@ -6,11 +6,14 @@ import { ChevronLeftIcon, MapPinIcon, MenuIcon, StarIcon } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-interface BarbershopInfoProps {
-    barbershop: Barbershop;
+interface BarbershopInfoString {
+    barbershop: string;
 }
 
-const BarbershopInfo = ({barbershop}: BarbershopInfoProps) => {
+
+const BarbershopInfo = ({barbershop}: BarbershopInfoString) => {
+    const barbershopProps = JSON.parse(barbershop);
+
     const router = useRouter();
 
     const handleBackClick = () => {
@@ -29,9 +32,9 @@ const BarbershopInfo = ({barbershop}: BarbershopInfoProps) => {
                 </Button>
                 
                 <Image
-                    src={barbershop.imageUrl}
+                    src={barbershopProps.imageUrl}
                     fill
-                    alt={barbershop.name}
+                    alt={barbershopProps.name}
                     style={{
                         objectFit: "cover",
                     }}
@@ -40,11 +43,11 @@ const BarbershopInfo = ({barbershop}: BarbershopInfoProps) => {
             </div>
 
             <div className="px-5 pt-3 pb-6 border-b border-solid border-secondary">
-                <h1 className="text-xl font-bold">{barbershop.name}</h1>
+                <h1 className="text-xl font-bold">{barbershopProps.name}</h1>
 
                 <div className="flex items-center gap-1 mt-2">
                     <MapPinIcon className="text-primary" size={18}/>
-                    <p className="text-sm">{barbershop.address}</p>
+                    <p className="text-sm">{barbershopProps.address}</p>
                 </div>
                 
                 <div className="flex items-center gap-1 mt-2">
